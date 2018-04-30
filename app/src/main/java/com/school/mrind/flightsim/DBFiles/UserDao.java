@@ -16,6 +16,9 @@ public interface UserDao {
     List<User> loadAllByClassnum(String clnum);
 
     @Insert
+    void insert(User user);
+
+    @Insert
     void insertAll(User... users);
 
     @Delete

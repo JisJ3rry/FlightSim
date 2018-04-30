@@ -1,11 +1,18 @@
 package com.school.mrind.flightsim.DBFiles;
 
 import android.arch.persistence.room.*;
+import android.support.annotation.NonNull;
 
-@Entity(primaryKeys = {"classname", "studentnum"})
+@Entity
 
 public class User {
+    @PrimaryKey(autoGenerate = true)
+    public int uid;
+
+    @ColumnInfo(name = "classname")
     public String classname;
+
+    @ColumnInfo(name = "studentnum")
     public int studentnum;
 
     @ColumnInfo(name = "nome")
@@ -14,11 +21,15 @@ public class User {
     @ColumnInfo(name = "interrogato")
     public boolean interrogato;
 
-    public String getClassnum(){
+    public int getUid(){
+        return uid;
+    }
+
+    public String getClassname(){
         return classname;
     }
 
-    public void setClassnum(String classname){
+    public void setClassname(String classname){
         this.classname = classname;
     }
 
