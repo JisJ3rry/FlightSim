@@ -7,7 +7,9 @@ import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.ArrayAdapter;
+import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
 import com.school.mrind.flightsim.DBFiles.DB;
@@ -39,8 +41,7 @@ public class FlightSim extends AppCompatActivity {
     }
 
     private void selectclass(ActivityMainBinding activityMainBinding) {
-        DB db = DB.getAppDatabase(this);
-        List<User> tot = db.userDao().getAll();
+        List<User> tot = DB.getAppDatabase(this).userDao().getAll();
         ArrayList<String> classtype = new ArrayList<String>();
         boolean shish = false;
         for (User usr : tot) {
@@ -54,7 +55,10 @@ public class FlightSim extends AppCompatActivity {
             }
             shish = false;
         }
-        activityMainBinding.spinner2.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, classtype));
+        ArrayList<String> blyat = new ArrayList<String>();
+        SpinnerAdapter Blyat = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, blyat);
+        activityMainBinding.spinner.setAdapter(Blyat);
+        activityMainBinding.spinner.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, classtype));
     }
 
     public void nuke(){

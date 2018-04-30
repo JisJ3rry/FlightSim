@@ -3,7 +3,7 @@ package com.school.mrind.flightsim.DBFiles;
 import android.arch.persistence.room.*;
 import android.support.annotation.NonNull;
 
-@Entity
+@Entity(indices = {@Index(value = {"nome"}, unique = true)})
 
 public class User {
     @PrimaryKey(autoGenerate = true)

@@ -1,5 +1,6 @@
 package com.school.mrind.flightsim.DBFiles;
 
+import android.arch.core.util.Function;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import com.school.mrind.flightsim.DBFiles.DB;
@@ -13,6 +14,12 @@ public class DBInitializer {
     public static void populateAsync(@NonNull final DB db) {
         PopulateDbAsync task = new PopulateDbAsync(db);
         task.execute();
+    }
+
+    public static List<User> readDb(@NonNull final DB db){
+        readDb task = new readDb(db);
+        task.execute();
+        return task.usrlist;
     }
 
     public static void populateSync(@NonNull final DB db) {
@@ -45,9 +52,25 @@ public class DBInitializer {
 
         @Override
         protected Void doInBackground(final Void... params) {
-            populateWithTestData(mDb);
+            //populateWithTestData(mDb);
             return null;
         }
 
+    }
+
+    public static class readDb extends AsyncTask<Void, Void, List<User>> {
+
+        private final DB mDb;
+        List<User> usrlist;
+
+        readDb(DB db){
+            mDb = db;
+        }
+
+        @Override
+        protected List<User> doInBackground(Void... params){
+            List<User> usrList = mDb.userDao().getAll();
+            return usrList;
+        }
     }
 }

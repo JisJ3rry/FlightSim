@@ -3,7 +3,7 @@ package com.school.mrind.flightsim.DBFiles;
 import android.arch.persistence.room.*;
 import android.content.Context;
 
-@Database(entities = {User.class}, version  = 2)
+@Database(entities = {User.class}, version  = 3)
 
 public abstract class DB extends RoomDatabase{
     private static DB INSTANCE;
