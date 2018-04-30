@@ -2,11 +2,14 @@ package com.school.mrind.flightsim;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
+
+import com.school.mrind.flightsim.DBFiles.DB;
+import com.school.mrind.flightsim.DBFiles.User;
 
 public class FlightSim extends AppCompatActivity {
 
-    // Used to load the 'native-lib' library on application startup.
     static {
         System.loadLibrary("native-lib");
     }
@@ -15,15 +18,15 @@ public class FlightSim extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_flight_sim);
-
-        // Example of a call to a native method
-        TextView tv = (TextView) findViewById(R.id.sample_text);
-        tv.setText(stringFromJNI());
     }
 
-    /**
-     * A native method that is implemented by the 'native-lib' native library,
-     * which is packaged with this application.
-     */
-    public native String stringFromJNI();
+    public void generate(View view){
+        TextView tv = (TextView)findViewById(R.id.editText);
+        tv.setText("Cyka Blyat");
+    }
+
+    public static User addUser(final DB db, User user){
+        db.userDao().insertAll(user);
+        return user;
+    }
 }
