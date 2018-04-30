@@ -38,33 +38,23 @@ public class FlightSim extends AppCompatActivity {
         });
     }
 
-    private void selectclass(ActivityMainBinding activityMainBinding){
+    private void selectclass(ActivityMainBinding activityMainBinding) {
         DB db = DB.getAppDatabase(this);
         List<User> tot = db.userDao().getAll();
         ArrayList<String> classtype = new ArrayList<String>();
         boolean shish = false;
-        for(User usr : tot){
-            for(String str : classtype){
-                if(usr.getClassname() == str){
+        for (User usr : tot) {
+            for (String str : classtype) {
+                if (usr.getClassname() == str) {
                     shish = true;
                 }
             }
-            if(!shish){
+            if (!shish) {
                 classtype.add(usr.getClassname());
             }
-            shish=false;
+            shish = false;
         }
-        activityMainBinding.spinner2.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,  classtype));
-    }
-
-    public void generate(View view){
-        TextView tv = findViewById(R.id.editText);
-        tv.setText("Blyatdotcom");
-    }
-
-    public static User addUser(final DB db, User user){
-        db.userDao().insertAll(user);
-        return user;
+        activityMainBinding.spinner2.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, classtype));
     }
 
     public void nuke(){
