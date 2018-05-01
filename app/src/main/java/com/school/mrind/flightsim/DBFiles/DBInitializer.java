@@ -16,12 +16,6 @@ public class DBInitializer {
         task.execute();
     }
 
-    public static List<User> readDb(@NonNull final DB db){
-        readDb task = new readDb(db);
-        task.execute();
-        return task.usrlist;
-    }
-
     public static void populateSync(@NonNull final DB db) {
         populateWithTestData(db);
     }
@@ -60,10 +54,9 @@ public class DBInitializer {
 
     public static class readDb extends AsyncTask<Void, Void, List<User>> {
 
-        private final DB mDb;
-        List<User> usrlist;
+        public final DB mDb;
 
-        readDb(DB db){
+        public readDb(DB db){
             mDb = db;
         }
 
@@ -71,6 +64,11 @@ public class DBInitializer {
         protected List<User> doInBackground(Void... params){
             List<User> usrList = mDb.userDao().getAll();
             return usrList;
+        }
+
+        @Override
+        protected void onPostExecute(List<User> result){
+            super.onPostExecute(result);
         }
     }
 }
