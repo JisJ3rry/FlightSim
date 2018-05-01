@@ -45,6 +45,11 @@ public class FlightSim extends AppCompatActivity {
             generate(activityMainBinding);
         });
 
+        activityMainBinding.button.setOnClickListener((View v) -> {
+            finish();
+            startActivity(new Intent(FlightSim.this, Settings.class));
+        });
+
         activityMainBinding.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -105,9 +110,5 @@ public class FlightSim extends AppCompatActivity {
 
     public void nuke(){
         DB.getAppDatabase(this).userDao().deleteAll();
-    }
-
-    private void openGitHub(){
-        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/MrIndeciso/FlightSim")));
     }
 }
