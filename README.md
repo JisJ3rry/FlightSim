@@ -1,2 +1,10 @@
 # FlightSim
-Regalo 20 euro a chi mi scrive un README decente
+
+<p>This repository hosts an Android app which lets you generate a random number.<br>
+It is meant for schools, to quickly pick a student randomly.</p>
+
+### How does it work?
+<p>The app lets you create a "class", in which you can put the number of students present in mentioned class.<br>
+  After selecting the class, the app generates a random integer between 1 and the number of students in the selected class.</p>
+  
+<p><br><br><b>Credits to MrIndeciso, 2018</b></p>
